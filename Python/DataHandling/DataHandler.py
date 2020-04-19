@@ -1,13 +1,10 @@
 import pandas as pd
 import requests
-import os.path
 from os import path
 import re
 import numpy as np
 
 class DataHandler:
-
-
     pattern = "([A-Z])\w+"
     necessary_cols = ["TotalCases", "TotalDeaths", "TotalTests"]
     unessential_cols = ["TotCases_1M_Pop", "Deaths_1M_pop", "Tests_1M_Pop"]
