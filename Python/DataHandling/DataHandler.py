@@ -29,8 +29,10 @@ class DataHandler:
         df = self.add_cfr_confirmation_rate(self, df)
 
         file_path = self.create_path(self, url)
-        print(file_path)
+
         df.to_csv(file_path, index=False)
+
+        return df
 
     def get_request(self, url):
         result = requests.get(url)
@@ -89,7 +91,7 @@ class DataHandler:
         df["ConfirmationRate"] = df[self.case_col] / df[self.test_col]
         return df
 
-    def check_csv(self, url, domain):
+    def get_csv(self, url, domain):
         file_path = self.create_path(self, url)
         if path.isfile(file_path):
             return pd.read_csv(file_path)
