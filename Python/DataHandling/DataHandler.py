@@ -6,10 +6,8 @@ import numpy as np
 
 class DataHandler:
     pattern = "([A-Z])\w+"
-    necessary_cols = ["TotalCases", "TotalDeaths", "TotalTests"]
-    unessential_cols = ["TotCases_1M_Pop", "Deaths_1M_pop", "Tests_1M_Pop"]
-    all_cols = ["Country", "TotalCases", "TotalDeaths", "TotalTests"]
-    us_cols = ["USAState", "TotalCases", "TotalDeaths", "TotalTests"]
+    all_cols = ["Country", "TotalCases", "TotalDeaths", "TotalTests", "TotCases_1M_Pop", "Deaths_1M_pop","Tests_1M_Pop"]
+    us_cols = ["USAState", "TotalCases", "TotalDeaths", "TotalTests", "Tot_Cases_1M_Pop", "Deaths_1M_Pop", "Tests_1M_Pop"]
     case_col = "TotalCases"
     death_col = "TotalDeaths"
     test_col = "TotalTests"
@@ -21,6 +19,8 @@ class DataHandler:
             df = self.create_us_df(self, data)
         else:
             df = self.create_all_df(self, data)
+
+        print("Dimensions before pruning: {}".format(df.shape))
 
         df = self.prune(self, df, domain)
 
@@ -45,9 +45,6 @@ class DataHandler:
             print(' Success '.center(60, '-'))
         else:
             print(' Failed '.center(60, '-'))
-
-        # Print response text
-        print(result.text)
         return result.json()
 
     def create_all_df(self, data):
@@ -67,8 +64,11 @@ class DataHandler:
         return data
 
     def convert_to_numeric(self, df):
-        for col in self.necessary_cols:
-            df[col] = df[col].astype(str).astype(int)
+        cols = df.columns
+        for col in cols:
+            if col == "Country" or col == "USAState":
+                continue
+            df[col] = df[col].astype(str).astype(float)
         return df
 
     def create_path(self, url):
