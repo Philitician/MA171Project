@@ -28,7 +28,14 @@ class LinearRegressionBase:
         print("Error: {}".format(error))
         return error
 
-    def calcLinRegSimple(self, alpha, beta):
+    def getMu(self, B):
+        return B[0] + (B[1] * self.X)
+
+    def getSigma(self, s1):
+        s = s1 * (np.sqrt((1 / self.n) + ((self.X - self.mu_x) ** 2) / self.SSx))
+        return s
+
+    def createLinReg(self, alpha, beta):
         return alpha + (beta * self.X)
 
     def plotLine(self, y):
@@ -39,4 +46,6 @@ class LinearRegressionBase:
         plt.xlabel(self.xlabel)
         plt.ylabel(self.ylabel)
         plt.legend()
+        filename = 'Reg_{}_{}'.format(self.xlabel, self.ylabel)
+        plt.savefig('Figures/Regression/{}.png'.format(filename))
         plt.show()

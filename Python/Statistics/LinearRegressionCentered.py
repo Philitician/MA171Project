@@ -21,7 +21,7 @@ class LinearRegressionCentered(LinearRegressionBase):
         self.v1 = self.n - 2
         self.sigma = np.sqrt(self.S1 / self.v1)
         y = self.calcLinReg()
-        y2 = self.calcLinRegSimple(self.B[0], self.B[1])
+        y2 = self.createLinReg(self.B[0], self.B[1])
         self.plotLine(y)
         self.plotLine(y2)
 
