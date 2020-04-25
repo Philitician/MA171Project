@@ -1,9 +1,5 @@
-import numpy as np
-from scipy.stats import t
 from DataHandling import DataHandler
 from Statistics.LinearRegression import LinearRegression
-from Statistics.LinearRegressionCentered import LinearRegressionCentered
-
 
 all_url = "https://covid19-server.chrismichael.now.sh/api/v1/AllReports"
 us_url = "https://covid19-server.chrismichael.now.sh/api/v1/CasesInAllUSStates"

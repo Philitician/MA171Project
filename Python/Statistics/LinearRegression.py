@@ -1,6 +1,5 @@
 import numpy as np
 from scipy.stats import t
-from scipy.stats import gamma
 import matplotlib.pyplot as plt
 
 from Statistics.LinearRegressionBase import LinearRegressionBase
@@ -58,10 +57,11 @@ class LinearRegression(LinearRegressionBase):
             ci = self.Interval(0.05)
 
         plt.grid(True)
-        plt.plot(self.X, self.y, color='black')
+        plt.plot(self.X, self.y, label='Linear Regression')
 
         if pred:
             plt.fill_between(self.X, self.PI[0], self.PI[1], color='g', alpha=.2, label='95% Credible Interval')
+            plt.plot(self.X, self.Y, 'k.', label='Scatter plot')
 
         plt.fill_between(self.X, self.CI[0], self.CI[1], color='r', alpha=.4, label='95% Prediction Interval')
 
