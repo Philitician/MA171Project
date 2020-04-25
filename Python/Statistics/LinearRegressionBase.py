@@ -10,7 +10,7 @@ class LinearRegressionBase:
         self.Y = Y
         self.Xmin = np.min(X)
         self.Xmax = np.max(X)
-        self.location = title
+        self.title = title
         self.n = len(X)
         Sx = sum(X)
         self.mu_x = Sx / self.n
@@ -53,7 +53,7 @@ class LinearRegressionBase:
         plt.grid(True)
         plt.plot(self.X, self.Y, 'k.', label='Scatter plot')
         plt.plot(self.X, y, label='Regression line')
-        plt.title(self.location)
+        plt.title(self.title)
         plt.xlabel(self.xlabel)
         plt.ylabel(self.ylabel)
         plt.legend()

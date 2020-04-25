@@ -20,10 +20,10 @@ lr = LinearRegression(us_data["ConfirmationRate"].values, us_data["Deaths_1M_Pop
 lr.plotCredibility(lr.Interval(theta))
 lr.plotCredibility(lr.Interval(theta, 1), pred=True)
 
-lr2 = LinearRegression(us_data["Tot_Cases_1M_Pop"].values, us_data["ConfirmationRate"].values, "USAState", "Tot_Cases_1M_Pop", "ConfirmationRate")
-CI95 = lr2.Interval(theta)
-lr2.plotCredibility(CI95)
+lr = LinearRegression(us_data["Tot_Cases_1M_Pop"].values, us_data["ConfirmationRate"].values, "USAState", "Tot_Cases_1M_Pop", "ConfirmationRate")
+lr.plotCredibility(lr.Interval(theta))
+lr.plotCredibility(lr.Interval(theta, 1), pred=True)
 
-lr3 = LinearRegression(us_data["Tot_Cases_1M_Pop"].values, us_data["Deaths_1M_Pop"].values, "USAState", "Tot_Cases_1M_Pop", "Deaths_1M_Pop")
-CI95 = lr3.Interval(theta)
-lr3.plotCredibility(CI95)
+lr = LinearRegression(us_data["Tot_Cases_1M_Pop"].values, us_data["Deaths_1M_Pop"].values, "USAState", "Tot_Cases_1M_Pop", "Deaths_1M_Pop")
+lr.plotCredibility(lr.Interval(theta))
+lr.plotCredibility(lr.Interval(theta, 1), pred=True)

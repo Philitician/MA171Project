@@ -57,20 +57,21 @@ class LinearRegression(LinearRegressionBase):
         if ci is None:
             ci = self.Interval(0.05)
 
-        
         plt.grid(True)
-
         plt.plot(self.X, self.y, color='black')
 
         if pred:
-            plt.fill_between(self.X, self.PI[0], self.PI[1], facecolor='OliveDrab', interpolate=True, alpha=.7)
-        else:
-            plt.fill_between(self.X, ci[0], ci[1], facecolor='Crimson', interpolate=True, alpha=.9)
+            plt.fill_between(self.X, self.PI[0], self.PI[1], color='g', alpha=.2, label='95% Credible Interval')
 
-        plt.title(self.location)
+        plt.fill_between(self.X, self.CI[0], self.CI[1], color='r', alpha=.4, label='95% Prediction Interval')
+
+        plt.title(self.title)
         plt.xlabel(self.xlabel)
         plt.ylabel(self.ylabel)
         plt.legend()
-        filename = 'CI_{}_{}'.format(self.xlabel, self.ylabel)
+        filename = 'CI'
+        if pred:
+            filename = 'PI'
+        filename += '_{}_{}'.format(self.xlabel, self.ylabel)
         plt.savefig('Figures/Interval/{}.png'.format(filename))
         plt.show()
