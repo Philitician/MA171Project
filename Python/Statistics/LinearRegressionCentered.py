@@ -7,10 +7,10 @@ from Statistics.LinearRegressionBase import LinearRegressionBase
 
 
 class LinearRegressionCentered(LinearRegressionBase):
-    def __init__(self, location, X, Y, xlabel, ylabel):
+    def __init__(self, X, Y, title, xlabel, ylabel):
         mu = sum(X) / len(X)
         X = X - mu
-        super().__init__(location, X, Y, xlabel, ylabel)
+        super().__init__(X, Y, title, xlabel, ylabel)
 
         self.XTX = self.getXTX(self.SSx, self.n)
         Sy, Sxy = sum(Y), sum(X*Y)

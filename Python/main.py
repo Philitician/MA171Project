@@ -14,19 +14,16 @@ all_data = dh.get_csv(dh, all_url, "all")
 print("US Data shape: {}".format(us_data.shape))
 print("Global Data shape: {}".format(all_data.shape))
 
-# quite decent
-lr = LinearRegression("USAState", us_data["ConfirmationRate"].values, us_data["Deaths_1M_Pop"].values, "ConfirmationRate", "Deaths_1M_Pop")
-CI95 = lr.CI(0.025)
-print(CI95)
-lr.plotCredibility('r', CI95)
+theta = 0.025
 
-lr2 = LinearRegression("USAState", us_data["Tot_Cases_1M_Pop"].values, us_data["ConfirmationRate"].values, "Tot_Cases_1M_Pop", "ConfirmationRate")
+lr = LinearRegression(us_data["ConfirmationRate"].values, us_data["Deaths_1M_Pop"].values, "USAState", "ConfirmationRate", "Deaths_1M_Pop")
+lr.plotCredibility(lr.Interval(theta))
+lr.plotCredibility(lr.Interval(theta, 1), pred=True)
 
-CI95 = lr2.CI(0.025)
-print(CI95)
-lr2.plotCredibility('b', CI95)
+lr2 = LinearRegression(us_data["Tot_Cases_1M_Pop"].values, us_data["ConfirmationRate"].values, "USAState", "Tot_Cases_1M_Pop", "ConfirmationRate")
+CI95 = lr2.Interval(theta)
+lr2.plotCredibility(CI95)
 
-lr3 = LinearRegression("USAState", us_data["Tot_Cases_1M_Pop"].values, us_data["Deaths_1M_Pop"].values, "Tot_Cases_1M_Pop", "Deaths_1M_Pop")
-CI95 = lr3.CI(0.025)
-print(CI95)
-lr3.plotCredibility('purple', CI95)
+lr3 = LinearRegression(us_data["Tot_Cases_1M_Pop"].values, us_data["Deaths_1M_Pop"].values, "USAState", "Tot_Cases_1M_Pop", "Deaths_1M_Pop")
+CI95 = lr3.Interval(theta)
+lr3.plotCredibility(CI95)
