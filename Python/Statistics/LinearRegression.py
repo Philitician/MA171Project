@@ -52,7 +52,7 @@ class LinearRegression(LinearRegressionBase):
         print("Precision is: {}".format(precision))
         return precision
 
-    def plotCredibility(self, ci = None, pred = False, both = False):
+    def plotCredibility(self, ci = None, pred = False):
         if ci is None:
             ci = self.Interval(0.05)
 
@@ -60,10 +60,10 @@ class LinearRegression(LinearRegressionBase):
         plt.plot(self.X, self.y, label='Linear Regression')
 
         if pred:
-            plt.fill_between(self.X, self.PI[0], self.PI[1], color='g', alpha=.2, label='95% Credible Interval')
+            plt.fill_between(self.X, self.PI[0], self.PI[1], color='g', alpha=.2, label='95% Prediction Interval')
             plt.plot(self.X, self.Y, 'k.', label='Scatter plot')
 
-        plt.fill_between(self.X, self.CI[0], self.CI[1], color='r', alpha=.4, label='95% Prediction Interval')
+        plt.fill_between(self.X, self.CI[0], self.CI[1], color='r', alpha=.4, label='95% Credible Interval')
 
         plt.title(self.title)
         plt.xlabel(self.xlabel)
