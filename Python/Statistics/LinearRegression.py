@@ -31,7 +31,7 @@ class LinearRegression(LinearRegressionBase):
         plt.show()
         print("X frequency share: {}".format(sum(i <= 0.1 for i in self.X) / self.n))
 
-        plt.hist(self.X, bins=20)
+        plt.hist(self.Y, bins=20)
         plt.title("Death Rate Frequency diagram")
         plt.xlabel("Death Rate")
         plt.ylabel("Frequency")
