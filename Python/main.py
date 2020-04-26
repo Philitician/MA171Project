@@ -20,7 +20,6 @@ lr.plotCredibility(lr.Interval(theta))
 lr.plotCredibility(lr.Interval(theta, 1), pred=True)
 
 
-
 lr = LinearRegression(us_data["Tot_Cases_1M_Pop"].values, us_data["ConfirmationRate"].values, "USAState", "Tot_Cases_1M_Pop", "ConfirmationRate")
 lr.plotCredibility(lr.Interval(theta))
 lr.plotCredibility(lr.Interval(theta, 1), pred=True)

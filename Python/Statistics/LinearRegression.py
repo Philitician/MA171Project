@@ -23,20 +23,21 @@ class LinearRegression(LinearRegressionBase):
         self.plotLine(self.y)
 
     def plotFrequency(self):
-        plt.hist(self.X)
+        plt.hist(self.X, bins=20)
         plt.title("Confirmation Rate Frequency diagram")
         plt.xlabel("Confirmation Rate")
         plt.ylabel("Frequency")
         plt.savefig('Figures/Frequency/ConfirmationRate.png')
         plt.show()
+        print("X frequency share: {}".format(sum(i <= 0.1 for i in self.X) / self.n))
 
-
-        plt.hist(self.Y)
+        plt.hist(self.X, bins=20)
         plt.title("Death Rate Frequency diagram")
         plt.xlabel("Death Rate")
         plt.ylabel("Frequency")
         plt.savefig('Figures/Frequency/DeathRate.png')
         plt.show()
+        print("Y frequency share: {}".format(sum(i <= 200 for i in self.Y) / self.n))
 
     def createXMatrix(self):
         newX = []
