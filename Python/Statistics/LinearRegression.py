@@ -1,6 +1,8 @@
 import numpy as np
 from scipy.stats import t
 import matplotlib.pyplot as plt
+import seaborn as sns
+
 
 from Statistics.LinearRegressionBase import LinearRegressionBase
 
@@ -17,19 +19,30 @@ class LinearRegression(LinearRegressionBase):
         self.v1 = self.n - 2
         self.S1 = SSe
         self.sigma = np.sqrt(self.S1 / self.v1)
-        b = self.b_pdf(self.B[1], self.sigma, self.v1)
         self.y = self.createLinReg(self.B[0], self.B[1])
         self.plotLine(self.y)
+
+    def plotFrequency(self):
+        plt.hist(self.X)
+        plt.title("Confirmation Rate Frequency diagram")
+        plt.xlabel("Confirmation Rate")
+        plt.ylabel("Frequency")
+        plt.savefig('Figures/Frequency/ConfirmationRate.png')
+        plt.show()
+
+
+        plt.hist(self.Y)
+        plt.title("Death Rate Frequency diagram")
+        plt.xlabel("Death Rate")
+        plt.ylabel("Frequency")
+        plt.savefig('Figures/Frequency/DeathRate.png')
+        plt.show()
 
     def createXMatrix(self):
         newX = []
         for x in self.X:
             newX.append([1, x])
         return np.array(newX)
-
-    def a_pdf(self):
-        a = t.pdf(self.X, self.B[0], self.sigma * np.sqrt(1/self.n), self.v1)
-
 
     def Interval(self, theta, pred_number = 0):
         m = self.getMu(self.B)

@@ -35,7 +35,7 @@ class LinearRegressionBase:
         return B[0] + (B[1] * self.X)
 
     def getSigma(self, s1, pred_number):
-        s = s1 * (np.sqrt( pred_number + (1 / self.n) + ((self.X - self.mu_x) ** 2) / self.SSx))
+        s = s1 * (np.sqrt( pred_number + (1 / self.n) + ((self.X - self.mu_x) ** 2) * (1 / self.SSx)))
         return s
 
     def b_pdf(self, m, s, v1):
